@@ -34,9 +34,8 @@ public class Book {
     @Column(name = "createDate")
     private LocalDate createDate;
 
-    //도서 상태
+    //도서 상태 대여가능 , 대여불가 , 대여중
     private String bookState;
-
 
     //Ai 설명
     private String aiExplanation;

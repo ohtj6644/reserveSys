@@ -29,6 +29,6 @@ public class Rent {
     @Column(name = "rentDate")
     private LocalDateTime rentDate;
 
-    // 대여중 = 001 , 반납완료 = 002
+    // 대여중 = 001 , 반납완료 = 002 , 연체중 = 003
     private int state;
 }
