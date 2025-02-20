@@ -1,18 +1,27 @@
 package com.example.reserveSys.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
+
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
-    private String bookId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     //책 번호
+    @Column(unique = true)
     private String bookNo;
 
     //도서 이름
@@ -22,11 +31,11 @@ public class Book {
     private String writer;
 
     //생성일자
-    private LocalDateTime createDate;
+    @Column(name = "createDate")
+    private LocalDate createDate;
 
     //도서 상태
     private String bookState;
-
 
 
 

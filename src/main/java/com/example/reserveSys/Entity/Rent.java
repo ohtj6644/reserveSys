@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -22,8 +23,10 @@ public class Rent {
     @JoinColumn(name = "borrower_id")
     private AddUser borrower;
 
-    private Book article;
 
+    private int bookId;
+
+    @Column(name = "rentDate")
     private LocalDateTime rentDate;
 
     // 대여중 = 001 , 반납완료 = 002
