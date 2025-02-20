@@ -23,8 +23,13 @@ repositories {
 	mavenCentral()
 	maven { url 'https://repo.spring.io/snapshot' }
 }
+ext {
+	set('springAiVersion', "1.0.0-M6")
+}
+
 
 dependencies {
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -37,7 +42,14 @@ dependencies {
 	implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.5'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'com.theokanning.openai-gpt3-java:client:0.11.0'
 }
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()

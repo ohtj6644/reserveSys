@@ -38,5 +38,9 @@ public class Book {
     private String bookState;
 
 
+    //Ai 설명
+    private String aiExplanation;
+
+
 
 }

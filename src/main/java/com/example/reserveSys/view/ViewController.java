@@ -11,4 +11,9 @@ public class ViewController {
     public String library001(){
         return "library_001";
     }
+
+    @GetMapping("/library002")
+    public String library002(){
+        return "library_002";
+    }
 }
