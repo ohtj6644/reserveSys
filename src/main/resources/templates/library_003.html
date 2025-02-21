@@ -68,13 +68,13 @@
     <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav side-nav">
-        <li class="active">
+        <li >
           <a href="/"><i class="fa fa-fw fa-dashboard"></i> 메인화면</a>
         </li>
-        <li class="active">
+        <li>
           <a href="/library002"><i class="fa fa-fw fa-wrench"></i> 도서등록</a>
         </li>
-        <li>
+        <li class="active">
           <a href="/library003"><i class="fa fa-fw fa-bar-chart-o"></i> 도서목록</a>
         </li>
         <li>
@@ -112,11 +112,11 @@
       <div class="row">
         <div class="col-lg-12">
           <h1 class="page-header" style="margin: 60px 0 20px;">
-            도서등록 <small>사서 프로그램 도서등록</small>
+            도서목록 <small>사서 프로그램 도서목록</small>
           </h1>
           <ol class="breadcrumb">
             <li class="active">
-              <i class="fa fa-dashboard"></i> 도서등록
+              <i class="fa fa-dashboard"></i> 도서목록
             </li>
           </ol>
         </div>
@@ -128,33 +128,60 @@
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="alert alert-info alert-dismissableg">
-              <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> 도서등록</h3>
+              <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> 도서목록</h3>
             </div>
             <div class="panel-body">
-              <div id="morris-area-chart"></div>
-              <form   class="form" enctype="multipart/form-data">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                  <tr>
+                    <th>도서 번호</th>
+                    <th>도서 이름</th>
+                    <th> 저자 </th>
+                    <th> 도서 상태</th>
+                    <th> # </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="book, loop : ${paging}">
+                    <td th:text="${book.bookNo}">3326</td>
+                    <td th:text="${book.bookName}">10/21/2013</td>
+                    <td th:text="${book.writer}">3:29 PM</td>
+                    <td th:text="${book.bookState}">$321.33</td>
+                    <td>
+                      <button  type="button" class="btn btn-primary my-2"  th:if="${book.bookState== '대여가능'}" th:value="${book.bookNo}" >대여</button>
+                    </td>
+                  </tr>
 
-                <div class="mb-3">
-                  <label  class="form-label">도서번호</label>
-                  <input type="text" id="bookNo" class="form-control form-control-1">
+                  </tbody>
+                </table>
+                <!--  페이징버튼  시작 -->
+                <div th:if="${!paging.isEmpty()}" style="text-align: center;">
+                  <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                      <a class="page-link" th:href="${paging.hasPrevious} ? @{|?page=${paging.number-1}|} : @{|?page=0|}">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                    </li>
+                    <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+                        th:if="${page >= paging.number-5 and page <= paging.number+5}"
+                        th:classappend="${page == paging.number} ? 'active'"
+                        class="page-item">
+                      <a th:text="${page+1}" class="page-link" th:href="@{|?page=${page}|}" ></a>
+                    </li>
+                    <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+                      <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-
-                <div class="mb-3">
-                  <label  class="form-label">제목</label>
-                  <input type="text" id="bookName" class="form-control form-control-1">
-                </div>
-
-                <div class="mb-3">
-                  <label  class="form-label">글쓴이</label>
-                  <input type="text" id="bookWriter" class="form-control form-control-1">
-                </div>
-
-                <div class="button">
-                  <input type="submit" id="createBtn" value="저장하기" class="btn btn-primary my-2">
-                </div>
-
-              </form>
-
+              </div>
+              <div class="text-right">
+                <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
             </div>
           </div>
         </div>
