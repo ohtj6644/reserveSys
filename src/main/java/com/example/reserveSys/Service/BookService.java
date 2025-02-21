@@ -1,16 +1,18 @@
 package com.example.reserveSys.Service;
 
 import com.example.reserveSys.Entity.Book;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BookService {
 
-    private BookRepository bookRepository;
-    private SpringAiService springAiService;
+    private final BookRepository bookRepository;
+    private final SpringAiService springAiService;
 
     public List<Book> findByBookNo (String bookNo){
 
