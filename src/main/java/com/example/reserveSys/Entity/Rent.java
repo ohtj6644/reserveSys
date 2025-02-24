@@ -17,17 +17,18 @@ public class Rent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true)
     private int id;
 
     private String rentUserName;
 
-    private int phoneNo;
+    private Integer phoneNo;
 
 
     private String bookNo;
 
     @Column(name = "rentDate")
-    private LocalDateTime rentDate;
+    private LocalDate rentDate;
 
     // 대여중 = 001 , 반납완료 = 002 , 연체중 = 003
     private int state;

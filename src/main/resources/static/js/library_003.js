@@ -62,7 +62,6 @@ $(document).on("click", "#openModalBtn", function () {
 $("#rentBtn").on("click", function () {
     var rentUser = $("#rentUser").val();
     var phoneNo = $("#phoneNo").val();
-    var rentDay = $("#rentDay").val();
     var bookNo = $("#modalBookId").val();
 
     // 서버에 AJAX POST 요청 보내기
@@ -72,8 +71,7 @@ $("#rentBtn").on("click", function () {
         data: JSON.stringify({
             bookNo: bookNo,
             rentUser: rentUser,
-            phoneNo: phoneNo,
-            rentDay: rentDay
+            phoneNo: phoneNo
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json", // 서버 응답을 JSON 형식으로 처리

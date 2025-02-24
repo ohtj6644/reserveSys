@@ -5,7 +5,9 @@
     <p>상태: <span th:text="${book.bookState}"></span></p>
     <p>상세 설명: <span th:text="${book.aiExplanation}"></span></p>
 
-    <div class="mb-3" id="modalBookId" th:value="${book.bookNo}"></div>
+    <div class="mb-3" >
+        <input id="modalBookId" th:value="${book.bookNo}" style="display:none;" type="text"i class="form-control form-control-1">
+    </div>
     <div class="mb-3">
         <label  class="form-label">대여자 성명</label>
         <input type="text" id="rentUser" class="form-control form-control-1">
@@ -16,9 +18,5 @@
         <input type="text" id="phoneNo" class="form-control form-control-1" placeholder="숫자만 입력">
     </div>
 
-    <div class="mb-3">
-        <label  class="form-label">대여일</label>
-        <input type="number" id="rentDay" class="form-control form-control-1">
-    </div>
 
 </div>

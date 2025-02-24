@@ -1,6 +1,7 @@
 package com.example.reserveSys.Service;
 
 import com.example.reserveSys.Entity.Book;
+import com.example.reserveSys.Repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -75,5 +75,12 @@ public class BookService {
             throw exception;
         }
 
+    }
+
+    public void rentBook(String bookNo){
+        List<Book> temp = this.bookRepository.findByBookNo(bookNo);
+        Book book = temp.get(0);
+        book.setBookState("대여중");
+        this.bookRepository.save(book);
     }
 }

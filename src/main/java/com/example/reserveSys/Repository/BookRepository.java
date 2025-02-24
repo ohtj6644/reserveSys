@@ -1,4 +1,4 @@
-package com.example.reserveSys.Service;
+package com.example.reserveSys.Repository;
 
 import com.example.reserveSys.Entity.Book;
 import org.springframework.data.domain.Page;
