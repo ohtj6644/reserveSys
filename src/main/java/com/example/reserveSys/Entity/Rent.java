@@ -27,9 +27,20 @@ public class Rent {
 
     private String bookNo;
 
+    private String bookName;
+
+    //대여일
     @Column(name = "rentDate")
     private LocalDate rentDate;
 
+    //대여만료예정일
+    @Column(name = "expiryDate")
+    private LocalDate expiryDate;
+
+    //반납일
+    @Column(name = "completeDate")
+    private LocalDate completeDate;
+
     // 대여중 = 001 , 반납완료 = 002 , 연체중 = 003
-    private int state;
+    private String state;
 }

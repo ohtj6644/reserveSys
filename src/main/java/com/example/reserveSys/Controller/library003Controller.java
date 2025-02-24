@@ -37,7 +37,7 @@ public class library003Controller {
 
         List<Book> temp = this.bookService.findByBookNo(bookNo);
         if (temp.get(0).getBookState().equals("대여가능")) {
-            this.rentService.rentCreate(bookNo,rentUser,phoneNo);
+            this.rentService.rentCreate(bookNo,rentUser,phoneNo,temp.get(0).getBookName());
             this.bookService.rentBook(bookNo);
             return ResponseEntity.ok().body("{\"success\": true}"); // 성공 응답
 

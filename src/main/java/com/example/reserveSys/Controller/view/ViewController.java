@@ -2,7 +2,9 @@ package com.example.reserveSys.Controller.view;
 
 
 import com.example.reserveSys.Entity.Book;
+import com.example.reserveSys.Entity.Rent;
 import com.example.reserveSys.Service.BookService;
+import com.example.reserveSys.Service.RentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ViewController {
     private final BookService bookService;
+
+    private final RentService rentService;
 
     @GetMapping("/")
     public String library001(){
@@ -36,6 +40,15 @@ public class ViewController {
         return "library_003";
     }
 
+    @GetMapping("/library004")
+    public String library004(Model model,@RequestParam(value = "page",defaultValue = "0")int page){
+        Page<Rent> bookPage = this.rentService.getPage(page);
+
+        model.addAttribute("paging",bookPage);
+
+        return "library_004";
+    }
+
     @PostMapping("/book/search/{bookName}")
     public String searchBook(@PathVariable("bookName") String bookName, Model model, @RequestParam(value = "page",defaultValue = "0")int page) {
 
@@ -47,6 +60,20 @@ public class ViewController {
 
         model.addAttribute("paging",bookPage);
         return "library_003 :: bookList";
+    }
+
+
+    @PostMapping("/rent/search/{bookName}")
+    public String searchRent(@PathVariable("bookName") String bookName, Model model, @RequestParam(value = "page",defaultValue = "0")int page) {
+
+        // 폼 데이터 처리
+        System.out.println("제목: " + bookName);
+        System.out.println("==========도서명으로 대여이력 검색==========");
+
+        Page<Book> bookPage = this.bookService.getSearchPage(page,bookName);
+
+        model.addAttribute("paging",bookPage);
+        return "library_004 :: rentList";
     }
 
     //모달 뷰어
