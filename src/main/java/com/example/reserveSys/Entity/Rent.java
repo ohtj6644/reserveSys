@@ -19,12 +19,12 @@ public class Rent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "borrower_id")
-    private AddUser borrower;
+    private String rentUserName;
+
+    private int phoneNo;
 
 
-    private int bookId;
+    private String bookNo;
 
     @Column(name = "rentDate")
     private LocalDateTime rentDate;

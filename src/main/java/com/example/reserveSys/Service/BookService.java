@@ -6,11 +6,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,5 +49,31 @@ public class BookService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page,15,Sort.by(sorts));
         return this.bookRepository.findAll(pageable);
+    }
+    public Page<Book> getSearchPage(int page, String bookName) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+        Pageable pageable = PageRequest.of(page, 15, Sort.by(sorts));
+
+        // bookName에 대한 조건 추가
+        Specification<Book> spec = (root, query, builder) -> {
+            if (bookName != null && !bookName.isEmpty()) {
+                return builder.like(root.get("bookName"), "%" + bookName + "%");
+            }
+            return builder.conjunction(); // 조건이 없으면 전체 검색
+        };
+
+        return this.bookRepository.findAll(spec, pageable);
+    }
+
+    public Book getBookByBookNo(String bookNo) throws Exception{
+        List<Book> temp = this.bookRepository.findByBookNo(bookNo);
+        if(temp.size()==1){
+            return temp.get(0);
+        }else {
+            Exception exception = new Exception();
+            throw exception;
+        }
+
     }
 }

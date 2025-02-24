@@ -1,0 +1,24 @@
+<div th:fragment="bookModal" >
+    <h4>도서 번호: <span th:text="${book.bookNo}"></span></h4>
+    <p>도서 이름: <span th:text="${book.bookName}"></span></p>
+    <p>저자: <span th:text="${book.writer}"></span></p>
+    <p>상태: <span th:text="${book.bookState}"></span></p>
+    <p>상세 설명: <span th:text="${book.aiExplanation}"></span></p>
+
+    <div class="mb-3" id="modalBookId" th:value="${book.bookNo}"></div>
+    <div class="mb-3">
+        <label  class="form-label">대여자 성명</label>
+        <input type="text" id="rentUser" class="form-control form-control-1">
+    </div>
+
+    <div class="mb-3">
+        <label  class="form-label">대여자 연락처</label>
+        <input type="text" id="phoneNo" class="form-control form-control-1" placeholder="숫자만 입력">
+    </div>
+
+    <div class="mb-3">
+        <label  class="form-label">대여일</label>
+        <input type="number" id="rentDay" class="form-control form-control-1">
+    </div>
+
+</div>
