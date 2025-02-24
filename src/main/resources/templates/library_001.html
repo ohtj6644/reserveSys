@@ -78,26 +78,23 @@
                     <a href="/library003"><i class="fa fa-fw fa-bar-chart-o"></i> 도서목록</a>
                 </li>
                 <li>
-                    <a href="tables.html"><i class="fa fa-fw fa-table"></i> 회원목록</a>
-                </li>
-                <li>
                     <a href="/library004"><i class="fa fa-fw fa-edit"></i> 대여목록</a>
                 </li>
                 <li>
                     <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 관리자 추가/등록</a>
                 </li>
 
-                <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Dropdown Item</a>
-                        </li>
-                    </ul>
-                </li>
+<!--                <li>-->
+<!--                    <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>-->
+<!--                    <ul id="demo" class="collapse">-->
+<!--                        <li>-->
+<!--                            <a href="#">Dropdown Item</a>-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <a href="#">Dropdown Item</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
 
             </ul>
         </div>
@@ -141,12 +138,12 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge" th:text="${bookCount}">26</div>
                                     <div>등록된 도서</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/library003">
                             <div class="panel-footer">
                                 <span class="pull-left">도서목록 바로가기</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -163,12 +160,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge" th:text="${rentCount}">12</div>
                                     <div>대여중인 도서</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="/library004">
                             <div class="panel-footer">
                                 <span class="pull-left">대여목록 바로가기</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -185,42 +182,42 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
+                                    <div class="huge"  th:text="${expiryCount}">124</div>
                                     <div>연체중인 도서</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">연체 목록 바로가기</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+<!--                <div class="col-lg-3 col-md-6">-->
+<!--                    <div class="panel panel-red">-->
+<!--                        <div class="panel-heading">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-xs-3">-->
+<!--                                    <i class="fa fa-support fa-5x"></i>-->
+<!--                                </div>-->
+<!--                                <div class="col-xs-9 text-right">-->
+<!--                                    <div class="huge">13</div>-->
+<!--                                    <div>Support Tickets!</div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <a href="#">-->
+<!--                            <div class="panel-footer">-->
+<!--                                <span class="pull-left">View Details</span>-->
+<!--                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+<!--                                <div class="clearfix"></div>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -240,127 +237,104 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="panel panel-default">
-                        <div class="alert alert-info alert-dismissable">
-                            <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> 신규 도서</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div id="morris-donut-chart"></div>
-                            <div class="text-right">
-                                <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
                         <div class="alert alert-info alert-dismissableg">
-                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 연체내역</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">just now</span>
-                                    <i class="fa fa-fw fa-calendar"></i> Calendar updated
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">4 minutes ago</span>
-                                    <i class="fa fa-fw fa-comment"></i> Commented on a post
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">23 minutes ago</span>
-                                    <i class="fa fa-fw fa-truck"></i> Order 392 shipped
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">46 minutes ago</span>
-                                    <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">1 hour ago</span>
-                                    <i class="fa fa-fw fa-user"></i> A new user has been added
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">2 hours ago</span>
-                                    <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">yesterday</span>
-                                    <i class="fa fa-fw fa-globe"></i> Saved the world
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <span class="badge">two days ago</span>
-                                    <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"
-                                </a>
-                            </div>
-                            <div class="text-right">
-                                <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="alert alert-info alert-dismissableg">
-                            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> 실시간 대여목록</h3>
+                            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> 신규 대여 목록</h3>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Order #</th>
-                                        <th>Order Date</th>
-                                        <th>Order Time</th>
-                                        <th>Amount (USD)</th>
+                                        <th>도서 번호</th>
+                                        <th>도서 명</th>
+                                        <th>대여자명</th>
+                                        <th>대여 상태</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>3326</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:29 PM</td>
-                                        <td>$321.33</td>
+                                    <tr th:each="rent, loop : ${rentPaging}">
+                                        <td th:text="${rent.bookNo}">3326</td>
+                                        <td th:text="${rent.bookName}">10/21/2013</td>
+                                        <td th:text="${rent.rentUserName}">3:29 PM</td>
+                                        <td th:text="${rent.state}">$321.33</td>
                                     </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-right">
+                                <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="col-lg-4">-->
+<!--                    <div class="panel panel-default">-->
+<!--                        <div class="alert alert-info alert-dismissableg">-->
+<!--                            <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> 연체내역</h3>-->
+<!--                        </div>-->
+<!--                        <div class="panel-body">-->
+<!--                            <div class="list-group">-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">just now</span>-->
+<!--                                    <i class="fa fa-fw fa-calendar"></i> Calendar updated-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">4 minutes ago</span>-->
+<!--                                    <i class="fa fa-fw fa-comment"></i> Commented on a post-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">23 minutes ago</span>-->
+<!--                                    <i class="fa fa-fw fa-truck"></i> Order 392 shipped-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">46 minutes ago</span>-->
+<!--                                    <i class="fa fa-fw fa-money"></i> Invoice 653 has been paid-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">1 hour ago</span>-->
+<!--                                    <i class="fa fa-fw fa-user"></i> A new user has been added-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">2 hours ago</span>-->
+<!--                                    <i class="fa fa-fw fa-check"></i> Completed task: "pick up dry cleaning"-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">yesterday</span>-->
+<!--                                    <i class="fa fa-fw fa-globe"></i> Saved the world-->
+<!--                                </a>-->
+<!--                                <a href="#" class="list-group-item">-->
+<!--                                    <span class="badge">two days ago</span>-->
+<!--                                    <i class="fa fa-fw fa-check"></i> Completed task: "fix error on sales page"-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                            <div class="text-right">-->
+<!--                                <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                        <div class="alert alert-info alert-dismissableg">
+                            <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> 신규 도서 목록</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>3325</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:20 PM</td>
-                                        <td>$234.34</td>
+                                        <th>도서 번호</th>
+                                        <th>도서 명</th>
+                                        <th>저자</th>
+                                        <th>도서 상태</th>
                                     </tr>
-                                    <tr>
-                                        <td>3324</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:03 PM</td>
-                                        <td>$724.17</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3323</td>
-                                        <td>10/21/2013</td>
-                                        <td>3:00 PM</td>
-                                        <td>$23.71</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3322</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:49 PM</td>
-                                        <td>$8345.23</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3321</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:23 PM</td>
-                                        <td>$245.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3320</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:15 PM</td>
-                                        <td>$5663.54</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3319</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:13 PM</td>
-                                        <td>$943.45</td>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="book, loop : ${bookPaging}">
+                                        <td th:text="${book.bookNo}">3326</td>
+                                        <td th:text="${book.bookName}">10/21/2013</td>
+                                        <td th:text="${book.writer}">3:29 PM</td>
+                                        <td th:text="${book.bookState}">$321.33</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -82,9 +82,6 @@
         <li >
           <a href="/library003"><i class="fa fa-fw fa-bar-chart-o"></i> 도서목록</a>
         </li>
-        <li>
-          <a href="tables.html"><i class="fa fa-fw fa-table"></i> 회원목록</a>
-        </li>
         <li class="active">
           <a href="/library004"><i class="fa fa-fw fa-edit"></i> 대여목록</a>
         </li>
@@ -92,17 +89,17 @@
           <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> 관리자 추가/등록</a>
         </li>
 
-        <li>
-          <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-          <ul id="demo" class="collapse">
-            <li>
-              <a href="#">Dropdown Item</a>
-            </li>
-            <li>
-              <a href="#">Dropdown Item</a>
-            </li>
-          </ul>
-        </li>
+<!--        <li>-->
+<!--          <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>-->
+<!--          <ul id="demo" class="collapse">-->
+<!--            <li>-->
+<!--              <a href="#">Dropdown Item</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--              <a href="#">Dropdown Item</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </li>-->
 
       </ul>
     </div>
@@ -170,7 +167,7 @@
                       </span>
                     </td>
                     <td>
-                      <button  type="button" class="btn btn-primary my-2"  th:if="${rent.state!= '002'}" th:value="${rent.bookNo}"id="completeRentBtn"
+                      <button  type="button" class="btn btn-primary my-2"  th:if="${rent.state!= '002'}" th:value="${rent.id}"id="completeRentBtn"
                       >반납</button>
                     </td>
                   </tr>

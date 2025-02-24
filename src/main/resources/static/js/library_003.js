@@ -78,12 +78,12 @@ $("#rentBtn").on("click", function () {
     })
         .done(function (response) {
             // 성공 응답 처리
-            if (response.success) {
-                alert("도서 대여 작업이 완료되었습니다.");
-            } else {
-                alert("도서 대여 등록에 실패했습니다: " + response.message);
-            }
-        })
+           if (response.success) {
+                          alert("도서 대여 작업이 완료되었습니다.");
+                      } else {
+                          alert("도서 대여 등록에 실패했습니다: " + response.message);
+                      }
+                  })
         .fail(function (xhr, textStatus, errorThrown) {
             // 실패 응답 처리
             if (xhr.status === 400) {

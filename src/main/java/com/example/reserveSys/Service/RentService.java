@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,6 +20,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RentService {
     private final RentRepository rentRepository;
+
+    private final BookService bookService;
 
     public void rentCreate(String bookNo,String rentUser,String phoneNo,String bookName){
         Rent rent = new Rent();
@@ -38,5 +41,55 @@ public class RentService {
         sorts.add(Sort.Order.desc("rentDate"));
         Pageable pageable = PageRequest.of(page,15,Sort.by(sorts));
         return this.rentRepository.findAll(pageable);
+    }
+
+    public Page<Rent> getRentMainPage(){
+        int page = 0;
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("rentDate"));
+        Pageable pageable = PageRequest.of(page,8,Sort.by(sorts));
+        return this.rentRepository.findAll(pageable);
+    }
+    public Page<Rent> getSearchPage(int page, String bookName) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("rentDate"));
+        Pageable pageable = PageRequest.of(page, 15, Sort.by(sorts));
+
+        // bookName에 대한 조건 추가
+        Specification<Rent> spec = (root, query, builder) -> {
+            if (bookName != null && !bookName.isEmpty()) {
+                return builder.like(root.get("bookName"), "%" + bookName + "%");
+            }
+            return builder.conjunction(); // 조건이 없으면 전체 검색
+        };
+
+        return this.rentRepository.findAll(spec , pageable);
+    }
+
+
+    public Rent findById(String id){
+        int rentId = Integer.parseInt(id);
+        return this.rentRepository.findById(rentId);
+    }
+
+    public void completeRent(Rent rent){
+    rent.setState("002");
+    rent.setCompleteDate(LocalDate.now());
+    this.rentRepository.save(rent);
+    this.bookService.completeRent(rent.getBookNo());
+    }
+
+    public int getRentCount(){
+        int rentCount = 0;
+        List<Rent> temp = this.rentRepository.findAll();
+        rentCount = temp.size();
+        return rentCount;
+    }
+    public int getExpiryCount(){
+        int expiryCount =0;
+        String state = "003";
+        List<Rent> temp = this.rentRepository.findByState(state);
+        expiryCount = temp.size();
+        return expiryCount;
     }
 }

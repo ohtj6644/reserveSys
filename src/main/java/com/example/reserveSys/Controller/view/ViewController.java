@@ -22,7 +22,20 @@ public class ViewController {
     private final RentService rentService;
 
     @GetMapping("/")
-    public String library001(){
+    public String library001(Model model){
+        int bookCount = this.bookService.getBookCount();
+        int rentCount = this.rentService.getRentCount();
+        int expiryCount = this.rentService.getExpiryCount();
+        Page<Book> bookMainPage = this.bookService.getBookMainPage();
+        Page<Rent> rentMainPage = this.rentService.getRentMainPage();
+
+
+        model.addAttribute("bookCount",bookCount);
+        model.addAttribute("rentCount",rentCount);
+        model.addAttribute("expiryCount",expiryCount);
+        model.addAttribute("bookPaging",bookMainPage);
+        model.addAttribute("rentPaging",rentMainPage);
+
         return "library_001";
     }
 
@@ -70,7 +83,7 @@ public class ViewController {
         System.out.println("제목: " + bookName);
         System.out.println("==========도서명으로 대여이력 검색==========");
 
-        Page<Book> bookPage = this.bookService.getSearchPage(page,bookName);
+        Page<Rent> bookPage = this.rentService.getSearchPage(page,bookName);
 
         model.addAttribute("paging",bookPage);
         return "library_004 :: rentList";

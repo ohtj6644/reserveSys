@@ -46,8 +46,15 @@ public class BookService {
 
     public Page<Book> getPage(int page){
         List<Sort.Order> sorts = new ArrayList<>();
-        sorts.add(Sort.Order.desc("createDate"));
+        sorts.add(Sort.Order.desc("bookNo"));
         Pageable pageable = PageRequest.of(page,15,Sort.by(sorts));
+        return this.bookRepository.findAll(pageable);
+    }
+    public Page<Book> getBookMainPage(){
+        int page = 0;
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("bookNo"));
+        Pageable pageable = PageRequest.of(page,8,Sort.by(sorts));
         return this.bookRepository.findAll(pageable);
     }
     public Page<Book> getSearchPage(int page, String bookName) {
@@ -82,5 +89,19 @@ public class BookService {
         Book book = temp.get(0);
         book.setBookState("대여중");
         this.bookRepository.save(book);
+    }
+
+    public void completeRent(String bookNo){
+        List<Book> temp = this.bookRepository.findByBookNo(bookNo);
+        Book book = temp.get(0);
+        book.setBookState("대여가능");
+        this.bookRepository.save(book);
+    }
+
+    public int getBookCount(){
+        int bookCount = 0;
+        List<Book> temp = this.bookRepository.findAll();
+        bookCount = temp.size();
+        return bookCount;
     }
 }
